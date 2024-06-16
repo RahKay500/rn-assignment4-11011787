@@ -1,6 +1,8 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, Text, View, Image, TextInput, FlatList, } from 'react-native';
 import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
+import JobsCard from './JobsCard';
+import PopularCard from './PopularCard';
 
 
 const HomeScreen = ({ name, email, onSwipeRight }) => {
@@ -9,6 +11,52 @@ const HomeScreen = ({ name, email, onSwipeRight }) => {
         onSwipeRight();
         }
     };
+    const featuredJobs = [
+        { id: '1', title: 'Software Engineer', company: 'Facebook', salary: '$180,00', location: 'Accra, Ghana', image: require('../assets/facebook.png') },
+        { id: '2', title: 'Data Scientist', company: 'Google', salary: '$200,00', location: 'Toronto, CA', image: require('../assets/googleLogo.png') },
+        { id: '3', title: 'Product Manager', company: 'Apple', salary: '$220,00', location: 'Cupertino, CA', image: require('../assets/appleLogo.png') },
+        { id: '4', title: 'UX Designer', company: 'Microsoft', salary: '$150,00', location: 'Redmond, WA', image: require('../assets/microsoft.png') },
+        { id: '5', title: 'Frontend Developer', company: 'Amazon', salary: '$170,00', location: 'Seattle, WA', image: require('../assets/amazon.png') },
+        { id: '6', title: 'Backend Developer', company: 'Twitter(X)', salary: '$190,00', location: 'Los Gatos, CA', image: require('../assets/X.png') },
+        { id: '7', title: 'DevOps Engineer', company: 'Uber', salary: '$160,00', location: 'New York, USA', image: require('../assets/uber.png') },
+        { id: '8', title: 'AI Researcher', company: 'OpenAI', salary: '$210,00', location: 'Chicago, USA', image: require('../assets/openai.png') },
+        ];
+        
+        const popularJobs = [
+        { id: '1', title: 'Graphic Designer', company: 'GitHub', salary: '$120,000', location: 'San Jose, CA', image: require('../assets/github.png') },
+        { id: '2', title: 'Marketing Manager', company: 'Nike', salary: '$130,000', location: 'Portland, OR', image: require('../assets/nike.png') },
+        { id: '3', title: 'Cybersecurity Analyst', company: 'Huawei', salary: '$140,000', location: 'Armonk, NY', image: require('../assets/huawei.png') },
+        { id: '4', title: 'HR Specialist', company: 'Instagram', salary: '$125,000', location: 'Los Angeles, USA', image: require('../assets/instagram.png') },
+        { id: '5', title: 'Cloud Architect', company: 'Telegram', salary: '$150,000', location: 'Atlanta, USA', image: require('../assets/telegram.png') },
+        { id: '6', title: 'Blockchain Developer', company: 'Pinterest', salary: '$160,000', location: 'New York, USA', image: require('../assets/pinterest.png') },
+        { id: '7', title: 'Mobile App Developer', company: 'Snapchat', salary: '$145,000', location: 'Chicago, USA', image: require('../assets/snapchat.png') },
+        { id: '8', title: 'Data Engineer', company: 'Spotify', salary: '$155,000', location: 'Stockholm, Sweden', image: require('../assets/spotify.png') },
+        ];
+        
+        
+        const renderJob = ({ item }) => (
+            <JobsCard
+            title={item.title}
+            company={item.company}
+            salary={item.salary}
+            location={item.location}
+            image={item.image}
+            />
+        );
+        
+        const renderPopularJob = ({ item }) => (
+            <PopularCard
+            title={item.title}
+            company={item.company}
+            salary={item.salary}
+            location={item.location}
+            image={item.image}
+            />
+        );
+        const onPress = () => {
+            console.log('Job card pressed');
+        };
+        
     return (
             <GestureHandlerRootView style={{ flex: 1 }}>
             <PanGestureHandler onGestureEvent={handleGesture}>
@@ -36,7 +84,7 @@ const HomeScreen = ({ name, email, onSwipeRight }) => {
                             source={require('../assets/filter.png')} />
                         </View>
                     </View>
-                    {/* <View>
+                    <View>
                         <View style={styles.jobsHeader}>
                         <Text style={styles.jobsHeading}>Featured Jobs</Text>
                         <Text style={styles.jobsText}>See all</Text>
@@ -61,7 +109,7 @@ const HomeScreen = ({ name, email, onSwipeRight }) => {
                     vertical
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={styles.jobsList}
-                    /> */}
+                    />
                 </SafeAreaView>
             </PanGestureHandler>
             </GestureHandlerRootView>
