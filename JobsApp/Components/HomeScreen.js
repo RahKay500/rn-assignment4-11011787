@@ -33,14 +33,15 @@ const HomeScreen = ({ name, email, onSwipeRight }) => {
         { id: '8', pjTitle: 'Data Engineer', firm: 'Spotify', wage: '$155,000/y', place: 'Stockholm, Sweden', photo: require('../assets/spotify.png') },
         ];
         
-        
-        const renderJob = ({ item }) => (
+        const colors = ['#5386E4', '#04284A', '#554C56', '#3B2171', '#FBB26F', '#D640EF', '#5C4963', '#3F691E'];
+        const renderJob = ({ item, index }) => (
             <JobsCard
             title={item.title}
             company={item.company}
             salary={item.salary}
             location={item.location}
             image={item.image}
+            backgroundColor={colors[index % colors.length]}
             />
         );
         
@@ -190,6 +191,8 @@ const HomeScreen = ({ name, email, onSwipeRight }) => {
         right: 20,
         backgroundColor: '#F2F2F3',
         borderRadius: 12,
+        flexDirection: 'row',
+        padding: 20,
     },
     searchIcon: {
         width: 20,

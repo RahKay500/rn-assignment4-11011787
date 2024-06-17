@@ -5,27 +5,27 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, TouchableWithoutFeedba
 const PopularCard = ({ popularJobs, onPress}) => {
     
     return (
-        <TouchableWithoutFeedback>
-            <TouchableOpacity onPress={onPress}>
             <View style={styles.card}>
                 {popularJobs.map ((item) => {
                     return (
+                    <TouchableWithoutFeedback key = {item.id}>
+                    <TouchableOpacity onPress={onPress}>
                         <View key={item.id} style={styles.cardContainer}>
-                    <View style={styles.imageContainer}>
-                        <Image source={item.photo} style={styles.companyImage} />
-                    </View>
-                    <View>
-                        <Text style={styles.pjTitle}>{item.pjTitle}</Text>
-                        <Text style={styles.firm}>{item.firm}</Text>
-                        <Text style={styles.wage}>{item.wage}</Text>
-                        <Text style={styles.place}>{item.place}</Text>
-                    </View>
-                </View>
+                            <View style={styles.imageContainer}>
+                                <Image source={item.photo} style={styles.companyImage} />
+                            </View>
+                            <View>
+                                <Text style={styles.pjTitle}>{item.pjTitle}</Text>
+                                <Text style={styles.firm}>{item.firm}</Text>
+                                <Text style={styles.wage}>{item.wage}</Text>
+                                <Text style={styles.place}>{item.place}</Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
+                    </TouchableWithoutFeedback>
                     )
                 }) }  
             </View>
-            </TouchableOpacity>
-        </TouchableWithoutFeedback>
     );
 };
 

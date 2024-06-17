@@ -2,12 +2,12 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 
 const JobsCard = ({ title, company, salary, location, image, 
-    onPress, }) => {
+    onPress, backgroundColor}) => {
     return (
         <TouchableWithoutFeedback>
             <TouchableOpacity onPress={onPress}>
                 <View style={styles.cardContiner}>
-                    <View style={styles.card}>
+                    <View style={[styles.card, {backgroundColor}]}>
                     <View style={styles.imageContainer}>
                         <Image style={styles.image} source={image} />
                     </View>
@@ -35,7 +35,7 @@ card: {
     width: 280,
     height: 186,
     top: 150,
-    backgroundColor: '#5386E4',
+    backgroundColor: '',
     borderRadius: 24,
     opacity: 0.85,
     marginHorizontal: 5,
