@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View, Image, TextInput, FlatList, } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, Image, TextInput, FlatList } from 'react-native';
 import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
 import JobsCard from './JobsCard';
 import PopularCard from './PopularCard';
@@ -23,14 +23,14 @@ const HomeScreen = ({ name, email, onSwipeRight }) => {
         ];
         
         const popularJobs = [
-        { id: '1', title: 'Graphic Designer', company: 'GitHub', salary: '$120,000', location: 'San Jose, CA', image: require('../assets/github.png') },
-        { id: '2', title: 'Marketing Manager', company: 'Nike', salary: '$130,000', location: 'Portland, OR', image: require('../assets/nike.png') },
-        { id: '3', title: 'Cybersecurity Analyst', company: 'Huawei', salary: '$140,000', location: 'Armonk, NY', image: require('../assets/huawei.png') },
-        { id: '4', title: 'HR Specialist', company: 'Instagram', salary: '$125,000', location: 'Los Angeles, USA', image: require('../assets/instagram.png') },
-        { id: '5', title: 'Cloud Architect', company: 'Telegram', salary: '$150,000', location: 'Atlanta, USA', image: require('../assets/telegram.png') },
-        { id: '6', title: 'Blockchain Developer', company: 'Pinterest', salary: '$160,000', location: 'New York, USA', image: require('../assets/pinterest.png') },
-        { id: '7', title: 'Mobile App Developer', company: 'Snapchat', salary: '$145,000', location: 'Chicago, USA', image: require('../assets/snapchat.png') },
-        { id: '8', title: 'Data Engineer', company: 'Spotify', salary: '$155,000', location: 'Stockholm, Sweden', image: require('../assets/spotify.png') },
+        { id: '1', pjTitle: 'Graphic Designer', firm: 'GitHub', wage: '$120,000/y', place: 'San Jose, CA', photo: require('../assets/github.png') },
+        { id: '2', pjTitle: 'Marketing Manager', firm: 'Youtube', wage: '$130,000/y', place: 'Portland, OR', photo: require('../assets/youtube.png') },
+        { id: '3', pjTitle: 'HR Specialist', firm: 'Beats', wage: '$140,000/y', place: 'Armonk, NY', photo: require('../assets/beats.png') },
+        { id: '4', pjTitle: 'Cybersecurity Analyst', firm: 'Instagram', wage: '$125,000/y', place: 'Los Angeles, USA', photo: require('../assets/instagram.png') },
+        { id: '5', pjTitle: 'Cloud Architect', firm: 'Telegram', wage: '$150,000/y', place: 'Atlanta, USA', photo: require('../assets/telegram.png') },
+        { id: '6', pjTitle: 'Blockchain Developer', firm: 'Pinterest', wage: '$160,000/y', place: 'New York, USA', photo: require('../assets/pinterest.png') },
+        { id: '7', pjTitle: 'Mobile App Developer', firm: 'Snapchat', wage: '$145,000/y', place: 'Chicago, USA', photo: require('../assets/snapchat.png') },
+        { id: '8', pjTitle: 'Data Engineer', firm: 'Spotify', wage: '$155,000/y', place: 'Stockholm, Sweden', photo: require('../assets/spotify.png') },
         ];
         
         
@@ -44,22 +44,16 @@ const HomeScreen = ({ name, email, onSwipeRight }) => {
             />
         );
         
-        const renderPopularJob = ({ item }) => (
-            <PopularCard
-            title={item.title}
-            company={item.company}
-            salary={item.salary}
-            location={item.location}
-            image={item.image}
-            />
+        const renderPopularJob = () => (
+            <PopularCard popularJobs={popularJobs } />   
         );
         const onPress = () => {
             console.log('Job card pressed');
         };
         
     return (
-            <GestureHandlerRootView style={{ flex: 1 }}>
-            <PanGestureHandler onGestureEvent={handleGesture}>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+        <PanGestureHandler onGestureEvent={handleGesture}>
                 <SafeAreaView style={styles.container}>
                     <View style={styles.header}>
                         <Text style={styles.homeName}>Rahina Kayor</Text>
@@ -98,17 +92,16 @@ const HomeScreen = ({ name, email, onSwipeRight }) => {
                         contentContainerStyle={styles.jobsList}
                         />
                     </View>
-                    <View style={styles.moreTextContainer}>
+                    <View style={styles.popularTextContainer}>
                         <Text style={styles.popJobs}>Popular Jobs</Text>
                         <Text style={styles.popJobsText}>See all</Text>
                     </View>
                     <FlatList 
-                    data={popularJobs}
+                    data={popularJobs.slice(0,1)}
                     renderItem={renderPopularJob}
                     keyExtractor={(item) => item.id}
                     vertical
                     showsVerticalScrollIndicator={false}
-                    contentContainerStyle={styles.jobsList}
                     />
                 </SafeAreaView>
             </PanGestureHandler>
@@ -119,19 +112,16 @@ const HomeScreen = ({ name, email, onSwipeRight }) => {
     const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 50,
         backgroundColor: '#FAFAFD', 
+        justifyContent: 'center',
     },
     header: {
         width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
-        top: 90,
         justifyContent: 'space-between',
         paddingVertical: 20,
-        marginTop: 50,
+        marginTop: 20,
     },
     homeName: {
         width: 254,
@@ -187,17 +177,19 @@ const HomeScreen = ({ name, email, onSwipeRight }) => {
         width: 327,
         height: 48,
         flexDirection: 'row',
-        backgroundColor: '#F2F2F3',
-        borderRadius: 12,
-        right: 32,
-        top: 120,
+        left: 20,
         paddingHorizontal: 15,
-        marginBottom: 18,
+        marginTop: 20,
+        top: 20,
     },
     searchBox: {
+        width: 310,
+        height: 48,
         flexDirection: 'row',
         alignItems: 'center',
-        flex: 1,
+        right: 20,
+        backgroundColor: '#F2F2F3',
+        borderRadius: 12,
     },
     searchIcon: {
         width: 20,
@@ -220,7 +212,7 @@ const HomeScreen = ({ name, email, onSwipeRight }) => {
         height: 48,
         backgroundColor: '#F2F2F3',
         borderRadius: 12,
-        left: 75,
+        left: 15,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
@@ -233,6 +225,7 @@ const HomeScreen = ({ name, email, onSwipeRight }) => {
         opacity: 0.5,
     },
     jobsHeader: {
+        bottom: 80,
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingVertical: 20,
@@ -259,11 +252,12 @@ const HomeScreen = ({ name, email, onSwipeRight }) => {
     },
     jobsList: {
     },
-    moreTextContainer: {
-        bottom: 430,
+    popularTextContainer: {
+        width: 150,
+        height: 25,
         flexDirection: 'row',
-        justifyContent:'space-between',
-        paddingVertical: 20,
+        margin: 20,
+        display: 'flex',
     },
     popJobs: {
         width: 114,
@@ -271,7 +265,6 @@ const HomeScreen = ({ name, email, onSwipeRight }) => {
         fontSize: 16,
         fontFamily: 'Poppins',
         fontWeight: '600',
-        right: 110,
         lineHeight: 21,
     },
     popJobsText: {
@@ -281,7 +274,7 @@ const HomeScreen = ({ name, email, onSwipeRight }) => {
         fontFamily: 'Poppins',
         fontWeight: '400',
         opacity: 0.5,
-        left: 117,
+        left: 230,
         top: 5,
     },
     });

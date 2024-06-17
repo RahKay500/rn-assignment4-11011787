@@ -2,20 +2,22 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 
 const JobsCard = ({ title, company, salary, location, image, 
-    onPress, style, }) => {
+    onPress, }) => {
     return (
         <TouchableWithoutFeedback>
             <TouchableOpacity onPress={onPress}>
-                <View style={styles.card}>
-                <View style={styles.imageContainer}>
-                    <Image style={styles.image} source={image} />
-                </View>
-                </View>
-                <View>
-                    <Text style={styles.title}>{title}</Text>
-                    <Text style={styles.company}>{company}</Text>
-                    <Text style={styles.salary}>{salary}</Text>
-                    <Text style={styles.location}>{location}</Text>
+                <View style={styles.cardContiner}>
+                    <View style={styles.card}>
+                    <View style={styles.imageContainer}>
+                        <Image style={styles.image} source={image} />
+                    </View>
+                    </View>
+                    <View>
+                        <Text style={styles.title}>{title}</Text>
+                        <Text style={styles.company}>{company}</Text>
+                        <Text style={styles.salary}>{salary}</Text>
+                        <Text style={styles.location}>{location}</Text>
+                    </View>
                 </View>
             </TouchableOpacity>
         </TouchableWithoutFeedback>
@@ -23,6 +25,12 @@ const JobsCard = ({ title, company, salary, location, image,
 };         
 
 const styles = StyleSheet.create({
+cardContiner: {
+    marginTop: 10,
+    alignItems: 'center',
+    top: -100,
+    
+},
 card: {
     width: 280,
     height: 186,
@@ -30,7 +38,8 @@ card: {
     backgroundColor: '#5386E4',
     borderRadius: 24,
     opacity: 0.85,
-    marginHorizontal: 10,
+    marginHorizontal: 5,
+    marginLeft: 15,
     padding: 20,
 },
 imageContainer: {
@@ -53,8 +62,8 @@ title: {
     fontWeight: '600',
     color: '#ffffff',
     lineHeight: 21,
-    left: 70,
-    bottom: 55,
+    top: -15,
+    left: 25,
     marginBottom: 5,
 },
 company: {
@@ -65,8 +74,8 @@ company: {
     fontWeight: '400',
     color: '#ffffff',
     opacity: 0.7,
-    bottom: 60,
-    left: 70,
+    bottom: 20,
+    left: 25,
     marginBottom: 10,
     lineHeight: 21,
 },
@@ -80,7 +89,8 @@ salary: {
     opacity: 0.7,
     marginBottom: 5,
     lineHeight: 24,
-    top: 20,
+    top: 60,
+    right: 45,
 },
 location: {
     width: 102,
@@ -90,8 +100,8 @@ location: {
     fontWeight: '500',
     color: '#ffffff',
     lineHeight: 24,
-    left: 150,
-    bottom: 10,
+    left: 100,
+    top: 30,
 },
 titleStyle: {
     color: '#ffffff',

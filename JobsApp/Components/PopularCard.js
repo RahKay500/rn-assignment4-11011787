@@ -1,102 +1,108 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 
-const popularCard = ({ title, company, salary, location, image, 
-    onPress, style, titleStyle, companyStyle, salaryStyle, locationStyle }) => {
+
+const PopularCard = ({ popularJobs, onPress}) => {
+    
     return (
         <TouchableWithoutFeedback>
             <TouchableOpacity onPress={onPress}>
-                <View style={[styles.card, style]}>
-                <View style={styles.imageContainer}>
-                    <Image style={styles.image} source={image} />
+            <View style={styles.card}>
+                {popularJobs.map ((item) => {
+                    return (
+                        <View key={item.id} style={styles.cardContainer}>
+                    <View style={styles.imageContainer}>
+                        <Image source={item.photo} style={styles.companyImage} />
+                    </View>
+                    <View>
+                        <Text style={styles.pjTitle}>{item.pjTitle}</Text>
+                        <Text style={styles.firm}>{item.firm}</Text>
+                        <Text style={styles.wage}>{item.wage}</Text>
+                        <Text style={styles.place}>{item.place}</Text>
+                    </View>
                 </View>
-                </View>
-                <View>
-                    <Text style={[styles.title, titleStyle]}>{title}</Text>
-                    <Text style={[styles.company, companyStyle]}>{company}</Text>
-                    <Text style={[styles.salary, salaryStyle]}>{salary}</Text>
-                    <Text style={[styles.location, locationStyle]}>{location}</Text>
-                </View>
+                    )
+                }) }  
+            </View>
             </TouchableOpacity>
         </TouchableWithoutFeedback>
-);
+    );
 };
-                
 
 const styles = StyleSheet.create({
 card: {
-    width: 280,
-    height: 186,
-    top: 150,
-    backgroundColor: '#5386E4',
-    borderRadius: 24,
-    opacity: 0.85,
-    marginHorizontal: 10,
+    display: 'flex',
+    alignItems: 'center',
+    gap: 10,
+    flexDirection: 'column'
+},
+cardContainer: {
+    width: 400,
+    height: 74,
+    backgroundColor: '#ffffff',
+    borderRadius: 20,
     padding: 20,
 },
-imageContainer: {
-    width: 46,
-    height: 46,
-    borderRadius: 12,
-    backgroundColor: '#ffffff',
-    marginBottom: 10,
+
+companyImage: {
+    height: 50,
+    width: 50,
+    borderRadius: 100,
+    flexDirection: 'row',
+    alignItems: 'center',  
+    bottom: 5,
 },
-image: {
-    width: 25,
-    height: 25,
-    margin: 10,
+infoContainer: {
+    flexDirection: 'row',
+    backgroundColor: 'black',
+    borderRadius: 10,
+    shadowColor: '#000',
 },
-title: {
-    width: 145,
-    height: 21,
-    fontFamily: 'Poppins',
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#ffffff',
-    lineHeight: 21,
-    left: 70,
-    bottom: 55,
-    marginBottom: 5,
-},
-company: {
-    width: 68,
-    height: 17,
-    fontFamily: 'Poppins',
+pjTitle: {
+    width: '100%',
+    height: 20,
     fontSize: 14,
-    fontWeight: '400',
-    color: '#ffffff',
-    opacity: 0.7,
-    bottom: 60,
+    fontWeight: '600',
+    fontFamily: 'Poppins',
+    color: '#0D0D26',
+    bottom: 50,
     left: 70,
-    marginBottom: 10,
+},
+firm: {
+    width: 74,
+    height: 21,
+    fontSize: 13,
+    fontWeight: '400',
+    fontFamily: 'Poppins',
     lineHeight: 21,
+    left: 70,
+    bottom: 50,
+    color: '#0D0D26',
+    opacity: 0.5,
 },
-salary: {
-    width: 56,
-    height: 24,
+wage: {
+    width: 62,
+    height: 20,
+    fontSize: 12,
+    fontWeight: '400',
     fontFamily: 'Poppins',
-    fontSize: 15,
-    fontWeight: '500',
-    color: '#ffffff',
-    opacity: 0.7,
-    marginBottom: 5,
-    lineHeight: 24,
-    top: 20,
+    lineHeight: 20,
+    left: 280,
+    bottom: 95,
+    color: '#0D0D26',
 },
-location: {
-    width: 102,
-    height: 24,
+place: {
+    width: 90,
+    height: 21,
+    fontSize: 13,
+    fontWeight: '400',
     fontFamily: 'Poppins',
-    fontSize: 15,
-    fontWeight: '500',
-    color: '#ffffff',
-    lineHeight: 24,
-    left: 150,
-    bottom: 10,
-},
-titleStyle: {
-    color: '#ffffff',
+    color: '#0D0D26',
+    lineHeight: 21,
+    left: 280,
+    bottom: 95,
+    opacity: 0.5,
 },
 });
 
-export default popularCard;
+export default PopularCard;
