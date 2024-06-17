@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { SafeAreaView, StyleSheet, Text, View, TextInput, Image, Pressable } from 'react-native';
+import PropTypes from 'prop-types';
 
 const LoginScreen = ({ onLogin }) => {
     const [name, setName] = useState('');
@@ -54,7 +55,11 @@ const LoginScreen = ({ onLogin }) => {
         </View>
     </SafeAreaView>
     );
-        };
+};
+
+LoginScreen.propTypes = {
+    onLogin: PropTypes.func.isRequired, 
+};
     const styles = StyleSheet.create({
         safeContainer: {
         flex: 1,
